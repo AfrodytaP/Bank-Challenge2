@@ -12,5 +12,14 @@ describe("Account Class Tests", () => {
       //Assert
       expect(testAccount).toBeInstanceOf(Account);
     });
+    it("Requirement 1 - Test 2) should have id property that is initialised to 0", () => {
+      //This is a test that checks if id property can be initialised
+      //Arrange
+      const expected = 0;
+      //Act
+      const testAccount = new Account();
+      //Assert
+      expect(testAccount.getUserId()).toBe(expected);
+    });
   });
 });
