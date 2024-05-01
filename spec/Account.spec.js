@@ -42,7 +42,7 @@ describe("Account Class Tests", () => {
 
   describe("Requirement 2 Tests", () => {
     // Will replace REPEATED arrange code
-    let testAccount;
+    let testAccount, testTransaction;
 
     beforeEach(() => {
       testAccount = new Account();
@@ -50,6 +50,7 @@ describe("Account Class Tests", () => {
 
     afterEach(() => {
       testAccount = undefined;
+      testTransaction = undefined;
     });
 
     //This is a suite of tests for Requirement 2 - Deposit
@@ -58,14 +59,11 @@ describe("Account Class Tests", () => {
       //Arrange
       const expected = 1;
       //Act
-      const accountTransaction = {
-        date: "10-01-2012",
-        credit: 1000,
-        debit: null,
-        balance: null,
-      };
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getCredit: 1000,
+      });
 
-      testAccount.deposit(accountTransaction);
+      testAccount.deposit(testTransaction);
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
     });
