@@ -2,12 +2,19 @@ export default class Account {
   #userID;
   #userName;
   #accountTransactions = [];
+  #accountBalance;
 
   //constructor
-  constructor(userID = 0, userName, accountTransaction = []) {
+  constructor(
+    userID = 0,
+    userName,
+    accountTransaction = [],
+    accountBalance = 0
+  ) {
     this.#userID = userID;
     this.#userName = userName;
     this.#accountTransactions = accountTransaction;
+    this.#accountBalance = accountBalance;
   }
 
   //getter method
@@ -28,6 +35,8 @@ export default class Account {
   }
 
   withdraw(accountTransaction) {
-    return this.#accountTransactions.push(accountTransaction);
+    if (this.#accountBalance >= accountTransaction.getDebit()) {
+      return this.#accountTransactions.push(accountTransaction);
+    }
   }
 }
