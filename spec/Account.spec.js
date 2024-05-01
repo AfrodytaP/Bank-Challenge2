@@ -54,7 +54,7 @@ describe("Account Class Tests", () => {
 
     //This is a suite of tests for Requirement 2 - Deposit
     it("Requirement 2 - Test 1) should add a transaction to the accountTransactions Array", () => {
-      //This is a test checks that accountTransactions array is on length 1
+      //This is a test checks that accountTransactions array is of length 1
       //Arrange
       const expected = 1;
       //Act
@@ -62,10 +62,41 @@ describe("Account Class Tests", () => {
         date: "10-01-2012",
         credit: 1000,
         debit: null,
-        balance: 1000,
+        balance: null,
       };
 
       testAccount.deposit(accountTransaction);
+      //Assert
+      expect(testAccount.getAccountTransactions().length).toBe(expected);
+    });
+  });
+
+  describe("Requirement 3 Tests", () => {
+    // Will replace REPEATED arrange code
+    let testAccount;
+
+    beforeEach(() => {
+      testAccount = new Account();
+    });
+
+    afterEach(() => {
+      testAccount = undefined;
+    });
+
+    it("Requirement 3 - Test 1) should add a transaction to the accountTransactions Array", () => {
+      //This is a test checks that accountTransactions array is of length 1
+      //Arrange
+      const expected = 1;
+      //Act
+      const accountTransaction = {
+        date: "10-01-2012",
+        credit: 1000,
+        debit: null,
+        balance: null,
+      };
+
+      testAccount.withdraw(accountTransaction);
+
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
     });

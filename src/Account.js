@@ -26,4 +26,8 @@ export default class Account {
   deposit(accountTransaction) {
     return this.#accountTransactions.push(accountTransaction);
   }
+
+  withdraw(accountTransaction) {
+    return this.#accountTransactions.push(accountTransaction);
+  }
 }
