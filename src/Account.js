@@ -30,13 +30,34 @@ export default class Account {
     return this.#accountTransactions;
   }
 
-  deposit(accountTransaction) {
-    return this.#accountTransactions.push(accountTransaction);
+  getAccountBalance() {
+    return this.#accountBalance;
   }
+
+  deposit = (accountTransaction) => {
+    this.#accountBalance += accountTransaction;
+    if (isNaN(accountTransaction)) {
+      throw Error("Invalid credit input: Please enter a number");
+    }
+    return this.#accountTransactions.push(accountTransaction);
+  };
 
   withdraw(accountTransaction) {
     if (this.#accountBalance >= accountTransaction.getDebit()) {
       return this.#accountTransactions.push(accountTransaction);
     }
+  }
+
+  calculateBalance() {
+    this.#accountBalance = this.#accountTransactions.reduce(
+      (balance, accountTransaction) => {
+        return (
+          balance +
+          accountTransaction.getCredit() -
+          accountTransaction.getDebit()
+        );
+      },
+      0
+    );
   }
 }

@@ -46,6 +46,10 @@ describe("Account Class Tests", () => {
 
     beforeEach(() => {
       testAccount = new Account();
+
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getCredit: 1000,
+      });
     });
 
     afterEach(() => {
@@ -59,13 +63,37 @@ describe("Account Class Tests", () => {
       //Arrange
       const expected = 1;
       //Act
-      testTransaction = jasmine.createSpyObj("testTransaction", {
-        getCredit: 1000,
-      });
 
-      testAccount.deposit(testTransaction);
+      testAccount.deposit(testTransaction.getCredit());
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
+    });
+
+    it("Requirement 2 - Test 2) should increase accountBallance to 1000", () => {
+      //This is a test checks that accountBallance array is of length 1000
+      //Arrange
+      const expected = 1000;
+
+      //Act
+      testAccount.deposit(testTransaction.getCredit());
+      //Assert
+      expect(testAccount.getAccountBalance()).toBe(expected);
+    });
+
+    it("Requirement 2 - Test 3) should throw a NAN error", () => {
+      //This is a test checks that accountBallance array is of length 1000
+      //Arrange
+      const expected = "Invalid credit input: Please enter a number";
+
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getCredit: "one",
+      });
+
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.deposit(testTransaction.getCredit());
+      }).toThrowError("Invalid credit input: Please enter a number");
     });
   });
 
