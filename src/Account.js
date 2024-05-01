@@ -1,11 +1,13 @@
 export default class Account {
   #userID;
   #userName;
+  #accountTransactions = [];
 
   //constructor
-  constructor(userID = 0, userName) {
+  constructor(userID = 0, userName, accountTransaction = []) {
     this.#userID = userID;
     this.#userName = userName;
+    this.#accountTransactions = accountTransaction;
   }
 
   //getter method
@@ -15,5 +17,13 @@ export default class Account {
 
   getUserName() {
     return this.#userName;
+  }
+
+  getAccountTransactions() {
+    return this.#accountTransactions;
+  }
+
+  deposit(accountTransaction) {
+    return this.#accountTransactions.push(accountTransaction);
   }
 }

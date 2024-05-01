@@ -2,16 +2,14 @@ import Account from "../src/Account.js";
 
 describe("Account Class Tests", () => {
   //This is a suite of tests for the Account class
-  describe("Account Initialisation Tests", () => {
+  describe("Requirement 1 Tests", () => {
     // Will replace REPEATED arrange code
     let testAccount;
-    let testAccount2;
     afterEach(() => {
       testAccount = undefined;
-      testAccount2 = undefined;
     });
 
-    //This is a suite of tests for the Account initialisation
+    //This is a suite of tests for requirements 1
     it("Requirement 1 - Test 1) should create a new instance of Account Class", () => {
       //This is a test that checks if an instance of Account Class can be made
       //Arrange
@@ -39,6 +37,37 @@ describe("Account Class Tests", () => {
       const testAccount = new Account(1, "Afrodyta");
       //Assert
       expect(testAccount.getUserName()).toBe(expected);
+    });
+  });
+
+  describe("Requirement 2 Tests", () => {
+    // Will replace REPEATED arrange code
+    let testAccount;
+
+    beforeEach(() => {
+      testAccount = new Account();
+    });
+
+    afterEach(() => {
+      testAccount = undefined;
+    });
+
+    //This is a suite of tests for Requirement 2 - Deposit
+    it("Requirement 2 - Test 1) should add a transaction to the accountTransactions Array", () => {
+      //This is a test checks that accountTransactions array is on length 1
+      //Arrange
+      const expected = 1;
+      //Act
+      const accountTransaction = {
+        date: "10-01-2012",
+        credit: 1000,
+        debit: null,
+        balance: 1000,
+      };
+
+      testAccount.deposit(accountTransaction);
+      //Assert
+      expect(testAccount.getAccountTransactions().length).toBe(expected);
     });
   });
 });
