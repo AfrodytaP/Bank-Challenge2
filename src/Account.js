@@ -39,6 +39,9 @@ export default class Account {
     if (isNaN(accountTransaction)) {
       throw Error("Invalid credit input: Please enter a number");
     }
+    if (accountTransaction < 0) {
+      throw Error("Invalid credit input: Please enter a positive number");
+    }
     return this.#accountTransactions.push(accountTransaction);
   };
 

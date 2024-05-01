@@ -81,7 +81,7 @@ describe("Account Class Tests", () => {
     });
 
     it("Requirement 2 - Test 3) should throw a NAN error", () => {
-      //This is a test checks that accountBallance array is of length 1000
+      //This is a test checks a string is not accepted as a credit input
       //Arrange
       const expected = "Invalid credit input: Please enter a number";
 
@@ -94,6 +94,22 @@ describe("Account Class Tests", () => {
       expect(() => {
         testAccount.deposit(testTransaction.getCredit());
       }).toThrowError("Invalid credit input: Please enter a number");
+    });
+
+    it("Requirement 2 - Test 4) should throw a no negative numbers error", () => {
+      //This is a test checks a negative number is not accepted as a credit input
+      //Arrange
+      const expected = "Invalid credit input: Please enter a positive number";
+
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getCredit: -1,
+      });
+
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.deposit(testTransaction.getCredit());
+      }).toThrowError("Invalid credit input: Please enter a positive number");
     });
   });
 
