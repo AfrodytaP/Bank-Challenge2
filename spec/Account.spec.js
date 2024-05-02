@@ -154,6 +154,21 @@ describe("Account Class Tests", () => {
       //Assert
       expect(testAccount.getAccountBalance()).toBe(expected);
     });
+
+    it("Requirement 3- Test 3) should throw a NAN error", () => {
+      //This is a test checks a string is not accepted as a credit input
+      //Arrange
+      const expected = "Invalid credit input: Please enter a number";
+
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDebit: "one",
+      });
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.withdraw(testTransaction.getDebit());
+      }).toThrowError("Invalid debit input: Please enter a number");
+    });
   });
   describe("Requirement 4 Tests", () => {
     // Will replace REPEATED arrange code

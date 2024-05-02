@@ -46,9 +46,13 @@ export default class Account {
   };
 
   withdraw(accountTransaction) {
+    if (isNaN(accountTransaction)) {
+      throw Error("Invalid debit input: Please enter a number");
+    }
     if (this.#accountBalance >= accountTransaction) {
       this.#accountBalance -= accountTransaction;
     }
+
     return this.#accountTransactions.push(accountTransaction);
   }
 
