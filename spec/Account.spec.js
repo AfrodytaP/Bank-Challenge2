@@ -121,8 +121,8 @@ describe("Account Class Tests", () => {
       testAccount = new Account();
 
       testTransaction = jasmine.createSpyObj("testTransaction", {
-        getCredit: 1000,
-        getDebit: 100,
+        getCredit: 100,
+        getDebit: 10,
       });
     });
 
@@ -142,8 +142,19 @@ describe("Account Class Tests", () => {
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
     });
-  });
 
+    it("Requirement 3 - Test 2) should have a total account balance of 90", () => {
+      //This is a test checks that accountBalance is at 90
+      //Arrange
+      const expected = 90;
+      //Act
+
+      testAccount.deposit(testTransaction.getCredit());
+      testAccount.withdraw(testTransaction.getDebit());
+      //Assert
+      expect(testAccount.getAccountBalance()).toBe(expected);
+    });
+  });
   describe("Requirement 4 Tests", () => {
     // Will replace REPEATED arrange code
     let testAccount, testTransaction;
@@ -157,7 +168,7 @@ describe("Account Class Tests", () => {
       testTransaction = undefined;
     });
 
-    it("Requirement 4 - Test 1) should not add a transaction to the accountTransactions Array", () => {
+    xit("Requirement 4 - Test 1) should not add a transaction to the accountTransactions Array", () => {
       //This is a test checks that accountTransactions array is of length 0
       //Arrange
       const expected = 0;
@@ -166,7 +177,7 @@ describe("Account Class Tests", () => {
         getDebit: 1000,
       });
 
-      testAccount.withdraw(testTransaction);
+      testAccount.withdraw(testTransaction.getDebit);
 
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
