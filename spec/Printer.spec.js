@@ -156,7 +156,7 @@ describe("Printer Class Tests", () => {
 
   describe("Requirement 8 Tests - Balance formatting", () => {
     // Will replace REPEATED arrange code
-    let testTransaction;
+    let testTransaction, testTransactionEmpty;
 
     beforeEach(() => {
       testTransaction = jasmine.createSpyObj("testTransaction", {
@@ -164,6 +164,12 @@ describe("Printer Class Tests", () => {
         getCredit: 100,
         getDebit: 1000,
         getBalance: 200,
+      });
+      testTransactionEmpty = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: null,
+        getDebit: null,
+        getBalance: null,
       });
     });
 
@@ -188,6 +194,15 @@ describe("Printer Class Tests", () => {
       //Act
       //Assert
       expect(Printer.formatBalance(testTransaction)).toEqual(expected);
+    });
+
+    it("Requirement 8 - Test 3) should call the formatBalance function of Printer Class", () => {
+      //This is a test that checks if the formatBalance function returns balance as "" if null
+      //Arrange
+      const expected = "";
+      //Act
+      //Assert
+      expect(Printer.formatBalance(testTransactionEmpty)).toEqual(expected);
     });
   });
   describe("Requirement 9 Tests - Transaction formatting", () => {
