@@ -4,6 +4,7 @@ export default class Printer {
 
   //formatDate method
   formatDate = (accountTransaction) => {
-    return accountTransaction.getDate().toLocaleDateString();
+    console.log(accountTransaction);
+    return accountTransaction.replace(/-/g, "/");
   };
 }
