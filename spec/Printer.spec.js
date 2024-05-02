@@ -10,6 +10,9 @@ describe("Printer Class Tests", () => {
       testPrinter = new Printer();
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getDate: "10-01-2012",
+        getCredit: 100,
+        getDebit: 1000,
+        getBalance: 200,
       });
     });
 
@@ -30,10 +33,10 @@ describe("Printer Class Tests", () => {
       //This is a test that checks if the formatDate function of Transaction Class can be called
       //Arrange
       //Act
-      spyOn(testPrinter, "formatDate");
-      testPrinter.formatDate();
+      spyOn(Printer, "formatDate");
+      Printer.formatDate();
       //Assert
-      expect(testPrinter.formatDate).toHaveBeenCalledWith();
+      expect(Printer.formatDate).toHaveBeenCalledWith();
     });
 
     it("Requirement 5 - Test 3) should call the formatDate function of Printer Class", () => {
@@ -42,7 +45,37 @@ describe("Printer Class Tests", () => {
       const expected = "10/01/2012";
       //Act
       //Assert
-      expect(testPrinter.formatDate(testTransaction.getDate())).toBe(expected);
+      expect(Printer.formatDate(testTransaction)).toBe(expected);
+    });
+  });
+
+  describe("Requirement 5 Tests - Credit formatting", () => {
+    // Will replace REPEATED arrange code
+    let testPrinter, testTransaction;
+
+    beforeEach(() => {
+      testPrinter = new Printer();
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: 100,
+        getDebit: 1000,
+        getBalance: 200,
+      });
+    });
+
+    afterEach(() => {
+      testPrinter = undefined;
+      testTransaction = undefined;
+    });
+
+    it("Requirement 5 - Test 4) should call the formatCredit function of Printer Class", () => {
+      //This is a test that checks if the formatCredit function of Transaction Class can be called
+      //Arrange
+      //Act
+      spyOn(Printer, "formatCredit");
+      Printer.formatCredit();
+      //Assert
+      expect(Printer.formatCredit).toHaveBeenCalledWith();
     });
   });
 });

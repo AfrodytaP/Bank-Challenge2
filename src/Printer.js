@@ -3,8 +3,12 @@ export default class Printer {
   constructor() {}
 
   //formatDate method
-  formatDate = (accountTransaction) => {
-    console.log(accountTransaction);
-    return accountTransaction.replace(/-/g, "/");
+  static formatDate = (accountTransaction) => {
+    return accountTransaction.getDate().replace(/-/g, "/");
+  };
+
+  //formatDebit method
+  static formatCredit = (accountTransaction) => {
+    return accountTransaction.getCredit().replace(/-/g, "/");
   };
 }
