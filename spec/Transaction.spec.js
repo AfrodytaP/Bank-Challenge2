@@ -139,6 +139,7 @@ describe("Transaction Class Tests", () => {
       expect(testTransactionEmpty.getDebit()).toBe(expected);
     });
   });
+
   describe("Testing the Balance aspect", () => {
     // Will replace REPEATED arrange code
     let testTransaction, testTransactionEmpty;
