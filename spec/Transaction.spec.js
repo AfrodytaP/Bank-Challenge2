@@ -32,5 +32,14 @@ describe("Transaction Class Tests", () => {
       //Assert
       expect(testTransaction.getDate).toHaveBeenCalledWith();
     });
+    it("Requirement 4 - Test 5) should call the getDate function of Transaction Class", () => {
+      //This is a test that checks if the getDate function returns the set date
+
+      //Arrange
+      const expected = testTransaction.getDate();
+      //Act
+      //Assert
+      expect(expected).toBe("10-01-2012");
+    });
   });
 });
