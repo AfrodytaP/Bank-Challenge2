@@ -51,7 +51,7 @@ describe("Printer Class Tests", () => {
 
   describe("Requirement 6 Tests - Credit formatting", () => {
     // Will replace REPEATED arrange code
-    let testTransaction;
+    let testTransaction, testTransactionEmpty;
 
     beforeEach(() => {
       testTransaction = jasmine.createSpyObj("testTransaction", {
@@ -59,6 +59,13 @@ describe("Printer Class Tests", () => {
         getCredit: 100,
         getDebit: 1000,
         getBalance: 200,
+      });
+
+      testTransactionEmpty = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: null,
+        getDebit: null,
+        getBalance: null,
       });
     });
 
@@ -83,6 +90,15 @@ describe("Printer Class Tests", () => {
       //Act
       //Assert
       expect(Printer.formatCredit(testTransaction)).toEqual(expected);
+    });
+
+    it("Requirement 6 - Test 3) should call the formatCredit function of Printer Class", () => {
+      //This is a test that checks if the formatCredit function returns credit as "" if null
+      //Arrange
+      const expected = "";
+      //Act
+      //Assert
+      expect(Printer.formatCredit(testTransactionEmpty)).toEqual(expected);
     });
   });
 
@@ -166,9 +182,9 @@ describe("Printer Class Tests", () => {
     beforeEach(() => {
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getDate: "10-01-2012",
-        getCredit: 100,
-        getDebit: 1000,
-        getBalance: 200,
+        getCredit: 1000,
+        getDebit: null,
+        getBalance: 1000,
       });
     });
 

@@ -10,7 +10,7 @@ export default class Printer {
   //formatCredit method
   static formatCredit = (accountTransaction) => {
     const credit = accountTransaction.getCredit();
-    return credit.toFixed(2);
+    return credit !== null ? credit.toFixed(2) : "";
   };
 
   //formatDebit method
