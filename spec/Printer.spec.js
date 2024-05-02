@@ -49,7 +49,7 @@ describe("Printer Class Tests", () => {
     });
   });
 
-  describe("Requirement 5 Tests - Credit formatting", () => {
+  describe("Requirement 6 Tests - Credit formatting", () => {
     // Will replace REPEATED arrange code
     let testTransaction;
 
@@ -83,6 +83,34 @@ describe("Printer Class Tests", () => {
       //Act
       //Assert
       expect(Printer.formatCredit(testTransaction)).toEqual(expected);
+    });
+  });
+
+  describe("Requirement 7 Tests - Debit formatting", () => {
+    // Will replace REPEATED arrange code
+    let testTransaction;
+
+    beforeEach(() => {
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: 100,
+        getDebit: 1000,
+        getBalance: 200,
+      });
+    });
+
+    afterEach(() => {
+      testTransaction = undefined;
+    });
+
+    it("Requirement 7 - Test 1) should call the formatDebit function of Printer Class", () => {
+      //This is a test that checks if the formatDebit function of Transaction Class can be called
+      //Arrange
+      //Act
+      spyOn(Printer, "formatDebit");
+      Printer.formatDebit();
+      //Assert
+      expect(Printer.formatDebit).toHaveBeenCalledWith();
     });
   });
 });
