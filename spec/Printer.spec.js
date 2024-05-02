@@ -149,5 +149,14 @@ describe("Printer Class Tests", () => {
       //Assert
       expect(Printer.formatBalance).toHaveBeenCalledWith();
     });
+
+    it("Requirement 8 - Test 2) should call the formatBalance function of Printer Class", () => {
+      //This is a test that checks if the formatBalance function returns the balance in a 1000.00 format
+      //Arrange
+      const expected = "200.00";
+      //Act
+      //Assert
+      expect(Printer.formatBalance(testTransaction)).toEqual(expected);
+    });
   });
 });
