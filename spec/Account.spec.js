@@ -83,8 +83,6 @@ describe("Account Class Tests", () => {
     it("Requirement 2 - Test 3) should throw a NAN error", () => {
       //This is a test checks a string is not accepted as a credit input
       //Arrange
-      const expected = "Invalid credit input: Please enter a number";
-
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getCredit: "one",
       });
@@ -99,8 +97,6 @@ describe("Account Class Tests", () => {
     it("Requirement 2 - Test 4) should throw a no negative numbers error", () => {
       //This is a test checks a negative number is not accepted as a credit input
       //Arrange
-      const expected = "Invalid credit input: Please enter a positive number";
-
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getCredit: -1,
       });
@@ -156,10 +152,7 @@ describe("Account Class Tests", () => {
     });
 
     it("Requirement 3- Test 3) should throw a NAN error", () => {
-      //This is a test checks a string is not accepted as a credit input
-      //Arrange
-      const expected = "Invalid credit input: Please enter a number";
-
+      //This is a test checks a string is not accepted as a debit input
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getDebit: "one",
       });
@@ -168,6 +161,20 @@ describe("Account Class Tests", () => {
       expect(() => {
         testAccount.withdraw(testTransaction.getDebit());
       }).toThrowError("Invalid debit input: Please enter a number");
+    });
+
+    it("Requirement 3 - Test 4) should throw a no negative numbers error", () => {
+      //This is a test checks a negative number is not accepted as a debit input
+      //Arrange
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDebit: -1,
+      });
+
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.withdraw(testTransaction.getDebit());
+      }).toThrowError("Invalid debit input: Please enter a positive number");
     });
   });
   describe("Requirement 4 Tests", () => {

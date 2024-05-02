@@ -49,6 +49,9 @@ export default class Account {
     if (isNaN(accountTransaction)) {
       throw Error("Invalid debit input: Please enter a number");
     }
+    if (accountTransaction < 0) {
+      throw Error("Invalid debit input: Please enter a positive number");
+    }
     if (this.#accountBalance >= accountTransaction) {
       this.#accountBalance -= accountTransaction;
     }
