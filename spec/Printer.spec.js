@@ -22,5 +22,15 @@ describe("Printer Class Tests", () => {
       //Assert
       expect(testPrinter).toBeInstanceOf(Printer);
     });
+
+    it("Requirement 5 - Test 2) should call the formatDate function of Printer Class", () => {
+      //This is a test that checks if the formatDate function of Transaction Class can be called
+      //Arrange
+      //Act
+      spyOn(testPrinter, "formatDate");
+      testPrinter.formatDate();
+      //Assert
+      expect(testPrinter.formatDate).toHaveBeenCalledWith();
+    });
   });
 });
