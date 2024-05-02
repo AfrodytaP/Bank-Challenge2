@@ -68,7 +68,7 @@ describe("Printer Class Tests", () => {
       testTransaction = undefined;
     });
 
-    it("Requirement 5 - Test 4) should call the formatCredit function of Printer Class", () => {
+    it("Requirement 6 - Test 1) should call the formatCredit function of Printer Class", () => {
       //This is a test that checks if the formatCredit function of Transaction Class can be called
       //Arrange
       //Act
