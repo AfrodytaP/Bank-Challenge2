@@ -241,4 +241,32 @@ describe("Printer Class Tests", () => {
       expect(Printer.formatTransaction(testTransaction)).toEqual(expected);
     });
   });
+
+  describe("Requirement 10 Tests - Statement Printer", () => {
+    // Will replace REPEATED arrange code
+    let testTransaction;
+
+    beforeEach(() => {
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: 1000,
+        getDebit: null,
+        getBalance: 1000,
+      });
+    });
+
+    afterEach(() => {
+      testTransaction = undefined;
+    });
+
+    it("Requirement 10 - Test 1) should call the printStatement function of Printer Class", () => {
+      //This is a test that checks if the printStatement function of Printer Class can be called
+      //Arrange
+      //Act
+      spyOn(Printer, "printStatement");
+      Printer.printStatement();
+      //Assert
+      expect(Printer.printStatement).toHaveBeenCalledWith();
+    });
+  });
 });

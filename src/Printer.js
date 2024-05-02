@@ -33,4 +33,9 @@ export default class Printer {
     const balance = this.formatBalance(accountTransaction);
     return `${date} || ${credit.padEnd(7)} || ${debit.padEnd(6)} || ${balance}`;
   };
+
+  //printStatement method
+  static printStatement = (accountTransaction) => {
+    return;
+  };
 }
