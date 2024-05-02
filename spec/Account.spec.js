@@ -190,6 +190,7 @@ describe("Account Class Tests", () => {
       }).toThrowError("Insufficient funds: Transaction declined");
     });
   });
+
   describe("Requirement 4 Tests", () => {
     // Will replace REPEATED arrange code
     let testAccount, testTransaction;
