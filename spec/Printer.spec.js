@@ -268,5 +268,15 @@ describe("Printer Class Tests", () => {
       //Assert
       expect(Printer.printStatement).toHaveBeenCalledWith();
     });
+
+    it("Requirement 10 - Test 2) should call the printStatement function of Printer Class", () => {
+      //This is a test that checks if the printStatement function console.log() been called
+      //Arrange
+      const spy = spyOn(console, "log");
+      //Act
+      Printer.printStatement(testTransaction);
+      //Assert
+      expect(spy).toHaveBeenCalled();
+    });
   });
 });

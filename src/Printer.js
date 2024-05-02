@@ -36,6 +36,7 @@ export default class Printer {
 
   //printStatement method
   static printStatement = (accountTransaction) => {
-    return;
+    const transactionFormatted = this.formatTransaction(accountTransaction);
+    console.log(transactionFormatted);
   };
 }
