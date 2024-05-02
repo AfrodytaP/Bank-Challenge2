@@ -203,19 +203,20 @@ describe("Account Class Tests", () => {
       testTransaction = undefined;
     });
 
-    xit("Requirement 4 - Test 1) should not add a transaction to the accountTransactions Array", () => {
-      //This is a test checks that accountTransactions array is of length 0
+    it("Requirement 4 - Test 1) should preform both a transactions", () => {
+      //This is a test checks that accountBalance is 0
       //Arrange
       const expected = 0;
       //Act
       testTransaction = jasmine.createSpyObj("testTransaction", {
-        getDebit: 1000,
+        getCredit: 100,
+        getDebit: 100,
       });
-
-      testAccount.withdraw(testTransaction.getDebit);
+      testAccount.deposit(testTransaction.getCredit());
+      testAccount.withdraw(testTransaction.getDebit());
 
       //Assert
-      expect(testAccount.getAccountTransactions().length).toBe(expected);
+      expect(testAccount.getAccountBalance()).toBe(expected);
     });
   });
 });
