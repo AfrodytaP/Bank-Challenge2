@@ -104,7 +104,7 @@ describe("Printer Class Tests", () => {
 
   describe("Requirement 7 Tests - Debit formatting", () => {
     // Will replace REPEATED arrange code
-    let testTransaction;
+    let testTransaction, testTransactionEmpty;
 
     beforeEach(() => {
       testTransaction = jasmine.createSpyObj("testTransaction", {
@@ -112,6 +112,12 @@ describe("Printer Class Tests", () => {
         getCredit: 100,
         getDebit: 1000,
         getBalance: 200,
+      });
+      testTransactionEmpty = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: null,
+        getDebit: null,
+        getBalance: null,
       });
     });
 
@@ -136,6 +142,15 @@ describe("Printer Class Tests", () => {
       //Act
       //Assert
       expect(Printer.formatDebit(testTransaction)).toEqual(expected);
+    });
+
+    it("Requirement 7 - Test 3) should call the formatDebit function of Printer Class", () => {
+      //This is a test that checks if the formatDebit function returns debit as "" if null
+      //Arrange
+      const expected = "";
+      //Act
+      //Assert
+      expect(Printer.formatDebit(testTransactionEmpty)).toEqual(expected);
     });
   });
 
