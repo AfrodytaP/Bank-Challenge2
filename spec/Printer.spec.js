@@ -30,7 +30,7 @@ describe("Printer Class Tests", () => {
     });
 
     it("Requirement 5 - Test 2) should call the formatDate function of Printer Class", () => {
-      //This is a test that checks if the formatDate function of Transaction Class can be called
+      //This is a test that checks if the formatDate function of Printer Class can be called
       //Arrange
       //Act
       spyOn(Printer, "formatDate");
@@ -67,7 +67,7 @@ describe("Printer Class Tests", () => {
     });
 
     it("Requirement 6 - Test 1) should call the formatCredit function of Printer Class", () => {
-      //This is a test that checks if the formatCredit function of Transaction Class can be called
+      //This is a test that checks if the formatCredit function of Printer Class can be called
       //Arrange
       //Act
       spyOn(Printer, "formatCredit");
@@ -104,7 +104,7 @@ describe("Printer Class Tests", () => {
     });
 
     it("Requirement 7 - Test 1) should call the formatDebit function of Printer Class", () => {
-      //This is a test that checks if the formatDebit function of Transaction Class can be called
+      //This is a test that checks if the formatDebit function of Printer Class can be called
       //Arrange
       //Act
       spyOn(Printer, "formatDebit");
@@ -141,7 +141,7 @@ describe("Printer Class Tests", () => {
     });
 
     it("Requirement 8 - Test 1) should call the formatBalance function of Printer Class", () => {
-      //This is a test that checks if the formatBalance function of Transaction Class can be called
+      //This is a test that checks if the formatBalance function of Printer Class can be called
       //Arrange
       //Act
       spyOn(Printer, "formatBalance");
@@ -157,6 +157,33 @@ describe("Printer Class Tests", () => {
       //Act
       //Assert
       expect(Printer.formatBalance(testTransaction)).toEqual(expected);
+    });
+  });
+  describe("Requirement 9 Tests - Transaction formatting", () => {
+    // Will replace REPEATED arrange code
+    let testTransaction;
+
+    beforeEach(() => {
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: 100,
+        getDebit: 1000,
+        getBalance: 200,
+      });
+    });
+
+    afterEach(() => {
+      testTransaction = undefined;
+    });
+
+    it("Requirement 9 - Test 1) should call the formatTransaction function of Printer Class", () => {
+      //This is a test that checks if the formatTransaction function of Printer Class can be called
+      //Arrange
+      //Act
+      spyOn(Printer, "formatTransaction");
+      Printer.formatTransaction();
+      //Assert
+      expect(Printer.formatTransaction).toHaveBeenCalledWith();
     });
   });
 });

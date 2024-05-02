@@ -24,4 +24,9 @@ export default class Printer {
     const balance = accountTransaction.getBalance();
     return balance.toFixed(2);
   };
+
+  //formatTransaction method
+  static formatTransaction = (accountTransaction) => {
+    return;
+  };
 }
