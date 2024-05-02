@@ -46,7 +46,7 @@ export default class Account {
   };
 
   withdraw(accountTransaction) {
-    if (this.#accountBalance >= accountTransaction.getDebit()) {
+    if (this.#accountBalance >= accountTransaction) {
       return this.#accountTransactions.push(accountTransaction);
     }
   }

@@ -115,30 +115,30 @@ describe("Account Class Tests", () => {
 
   describe("Requirement 3 Tests", () => {
     // Will replace REPEATED arrange code
-    let testAccount;
+    let testAccount, testTransaction;
 
     beforeEach(() => {
       testAccount = new Account();
+
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getCredit: 1000,
+        getDebit: 100,
+      });
     });
 
     afterEach(() => {
       testAccount = undefined;
+      testTransaction = undefined;
     });
 
-    xit("Requirement 3 - Test 1) should add a transaction to the accountTransactions Array", () => {
+    it("Requirement 3 - Test 1) should add a transaction to the accountTransactions Array", () => {
       //This is a test checks that accountTransactions array is of length 1
       //Arrange
-      const expected = 1;
+      const expected = 2;
       //Act
-      const accountTransaction = {
-        date: "10-01-2012",
-        credit: null,
-        debit: 1000,
-        balance: null,
-      };
 
-      testAccount.withdraw(accountTransaction);
-
+      testAccount.deposit(testTransaction.getCredit());
+      testAccount.withdraw(testTransaction.getDebit());
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
     });
