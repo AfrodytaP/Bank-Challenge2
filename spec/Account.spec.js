@@ -218,5 +218,28 @@ describe("Account Class Tests", () => {
       //Assert
       expect(testAccount.getAccountBalance()).toBe(expected);
     });
+    it("Requirement 4 - Test 2) should preform both a transactions 3 times", () => {
+      //This is a test checks that an error message is returned and that 3 transactions have been added to accountTransaction
+      //Arrange
+
+      //Act
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getCredit: 200,
+        getDebit: 100,
+      });
+      testAccount.deposit(testTransaction.getCredit());
+      testAccount.withdraw(testTransaction.getDebit());
+      testAccount.withdraw(testTransaction.getDebit());
+
+      //Assert
+      expect(() => {
+        testAccount.withdraw(testTransaction.getDebit());
+      }).toThrowError("Insufficient funds: Transaction declined");
+      //Arrange
+      const expected = 3;
+      //Assert
+      //Assert
+      expect(testAccount.getAccountTransactions().length).toBe(expected);
+    });
   });
 });
