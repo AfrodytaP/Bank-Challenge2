@@ -122,4 +122,32 @@ describe("Printer Class Tests", () => {
       expect(Printer.formatDebit(testTransaction)).toEqual(expected);
     });
   });
+
+  describe("Requirement 8 Tests - Balance formatting", () => {
+    // Will replace REPEATED arrange code
+    let testTransaction;
+
+    beforeEach(() => {
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: 100,
+        getDebit: 1000,
+        getBalance: 200,
+      });
+    });
+
+    afterEach(() => {
+      testTransaction = undefined;
+    });
+
+    it("Requirement 8 - Test 1) should call the formatBalance function of Printer Class", () => {
+      //This is a test that checks if the formatBalance function of Transaction Class can be called
+      //Arrange
+      //Act
+      spyOn(Printer, "formatBalance");
+      Printer.formatBalance();
+      //Assert
+      expect(Printer.formatBalance).toHaveBeenCalledWith();
+    });
+  });
 });

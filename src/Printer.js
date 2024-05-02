@@ -18,4 +18,10 @@ export default class Printer {
     const debit = accountTransaction.getDebit();
     return debit.toFixed(2);
   };
+
+  //formatBalance method
+  static formatBalance = (accountTransaction) => {
+    const balance = accountTransaction.getBalance();
+    return balance;
+  };
 }
