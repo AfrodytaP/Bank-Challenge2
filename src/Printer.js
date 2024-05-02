@@ -15,7 +15,7 @@ export default class Printer {
 
   //formatDebit method
   static formatDebit = (accountTransaction) => {
-    const credit = accountTransaction.getDebit();
-    return credit;
+    const debit = accountTransaction.getDebit();
+    return debit.toFixed(2);
   };
 }

@@ -112,5 +112,14 @@ describe("Printer Class Tests", () => {
       //Assert
       expect(Printer.formatDebit).toHaveBeenCalledWith();
     });
+
+    it("Requirement 7 - Test 2) should call the formatDebit function of Printer Class", () => {
+      //This is a test that checks if the formatDebit function returns the debit in a 1000.00 format
+      //Arrange
+      const expected = "1000.00";
+      //Act
+      //Assert
+      expect(Printer.formatDebit(testTransaction)).toEqual(expected);
+    });
   });
 });
