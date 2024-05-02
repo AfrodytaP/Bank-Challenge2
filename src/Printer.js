@@ -27,6 +27,10 @@ export default class Printer {
 
   //formatTransaction method
   static formatTransaction = (accountTransaction) => {
-    return;
+    const date = this.formatDate(accountTransaction);
+    const credit = this.formatCredit(accountTransaction);
+    const debit = this.formatDebit(accountTransaction);
+    const balance = this.formatBalance(accountTransaction);
+    return `${date} || ${credit} ||    ${debit}    || ${balance}`;
   };
 }

@@ -231,5 +231,14 @@ describe("Printer Class Tests", () => {
       //Assert
       expect(Printer.formatTransaction).toHaveBeenCalledWith();
     });
+
+    it("Requirement 9 - Test 2) should call the formatTransaction function of Printer Class", () => {
+      //This is a test that checks if the formatTransaction function returns the transaction balance in specific format
+      //Arrange
+      const expected = "10/01/2012 || 1000.00 ||        || 1000.00";
+      //Act
+      //Assert
+      expect(Printer.formatTransaction(testTransaction)).toEqual(expected);
+    });
   });
 });
