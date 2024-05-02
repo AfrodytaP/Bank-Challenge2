@@ -171,5 +171,13 @@ describe("Transaction Class Tests", () => {
       //Assert
       expect(testTransaction.getBalance()).toBe(expected);
     });
+    it("Requirement 4 - Test 15) should call the getBalance function of Transaction Class", () => {
+      //This is a test that checks if the getBalance function returns 0 if balance amount is not set
+      //Arrange
+      const expected = 0;
+      //Act
+      //Assert
+      expect(testTransactionEmpty.getBalance()).toBe(expected);
+    });
   });
 });
