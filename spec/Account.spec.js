@@ -221,7 +221,6 @@ describe("Account Class Tests", () => {
     it("Requirement 4 - Test 2) should preform both a transactions 3 times", () => {
       //This is a test checks that an error message is returned and that 3 transactions have been added to accountTransaction
       //Arrange
-
       //Act
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getCredit: 200,
