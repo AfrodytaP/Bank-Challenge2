@@ -52,10 +52,11 @@ export default class Account {
     if (accountTransaction < 0) {
       throw Error("Invalid debit input: Please enter a positive number");
     }
-    if (this.#accountBalance >= accountTransaction) {
-      this.#accountBalance -= accountTransaction;
+    if (this.#accountBalance < accountTransaction) {
+      throw Error("Insufficient funds: Transaction declined");
     }
 
+    this.#accountBalance -= accountTransaction;
     return this.#accountTransactions.push(accountTransaction);
   }
 

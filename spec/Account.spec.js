@@ -176,6 +176,19 @@ describe("Account Class Tests", () => {
         testAccount.withdraw(testTransaction.getDebit());
       }).toThrowError("Invalid debit input: Please enter a positive number");
     });
+    it("Requirement 3 - Test 5) should throw insufficient funds error", () => {
+      //This is a test checks a an error is thrown if the account has insufficient funds compered with the debit input
+      //Arrange
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDebit: 1000,
+      });
+
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.withdraw(testTransaction.getDebit());
+      }).toThrowError("Insufficient funds: Transaction declined");
+    });
   });
   describe("Requirement 4 Tests", () => {
     // Will replace REPEATED arrange code
