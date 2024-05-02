@@ -5,7 +5,12 @@ export default class Transaction {
   #balance;
 
   //constructor
-  constructor(date = "", credit = 0, debit = 0, balance = 0) {
+  constructor(
+    date = new Date().toLocaleDateString(),
+    credit = 0,
+    debit = 0,
+    balance = 0
+  ) {
     this.#date = date;
     this.#credit = credit;
     this.#debit = debit;

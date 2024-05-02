@@ -7,7 +7,7 @@ describe("Transaction Class Tests", () => {
     let testTransaction;
 
     beforeEach(() => {
-      testTransaction = new Transaction();
+      testTransaction = new Transaction("10-01-2012", 1000, 0, 1000);
     });
 
     afterEach(() => {
@@ -21,6 +21,16 @@ describe("Transaction Class Tests", () => {
       //Act
       //Assert
       expect(testTransaction).toBeInstanceOf(Transaction);
+    });
+
+    it("Requirement 4 - Test 4) should call the getDate function of Transaction Class", () => {
+      //This is a test that checks if the getDate function of Transaction Class can be called
+      //Arrange
+      //Act
+      spyOn(testTransaction, "getDate");
+      testTransaction.getDate();
+      //Assert
+      expect(testTransaction.getDate).toHaveBeenCalledWith();
     });
   });
 });
