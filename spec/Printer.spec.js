@@ -51,10 +51,9 @@ describe("Printer Class Tests", () => {
 
   describe("Requirement 5 Tests - Credit formatting", () => {
     // Will replace REPEATED arrange code
-    let testPrinter, testTransaction;
+    let testTransaction;
 
     beforeEach(() => {
-      testPrinter = new Printer();
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getDate: "10-01-2012",
         getCredit: 100,
@@ -64,7 +63,6 @@ describe("Printer Class Tests", () => {
     });
 
     afterEach(() => {
-      testPrinter = undefined;
       testTransaction = undefined;
     });
 
@@ -76,6 +74,15 @@ describe("Printer Class Tests", () => {
       Printer.formatCredit();
       //Assert
       expect(Printer.formatCredit).toHaveBeenCalledWith();
+    });
+
+    it("Requirement 6 - Test 2) should call the formatCredit function of Printer Class", () => {
+      //This is a test that checks if the formatCredit function returns the credit in a 100.00 format
+      //Arrange
+      const expected = "100.00";
+      //Act
+      //Assert
+      expect(Printer.formatCredit(testTransaction)).toEqual(expected);
     });
   });
 });

@@ -9,6 +9,7 @@ export default class Printer {
 
   //formatDebit method
   static formatCredit = (accountTransaction) => {
-    return accountTransaction.getCredit().replace(/-/g, "/");
+    const credit = accountTransaction.getCredit();
+    return credit.toFixed(2);
   };
 }
