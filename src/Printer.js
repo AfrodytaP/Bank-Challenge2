@@ -31,6 +31,6 @@ export default class Printer {
     const credit = this.formatCredit(accountTransaction);
     const debit = this.formatDebit(accountTransaction);
     const balance = this.formatBalance(accountTransaction);
-    return `${date} || ${credit} ||    ${debit}    || ${balance}`;
+    return `${date} || ${credit.padEnd(7)} || ${debit.padEnd(6)} || ${balance}`;
   };
 }
