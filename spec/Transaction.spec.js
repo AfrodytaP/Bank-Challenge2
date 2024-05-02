@@ -97,4 +97,29 @@ describe("Transaction Class Tests", () => {
       expect(testTransactionEmpty.getCredit()).toBe(expected);
     });
   });
+
+  describe("Testing the Debit aspect", () => {
+    // Will replace REPEATED arrange code
+    let testTransaction, testTransactionEmpty;
+
+    beforeEach(() => {
+      testTransaction = new Transaction("10-01-2012", 1000, 0, 1000);
+      testTransactionEmpty = new Transaction();
+    });
+
+    afterEach(() => {
+      testTransaction = undefined;
+      testTransactionEmpty = undefined;
+    });
+
+    it("Requirement 4 - Test 10) should call the getDebit function of Transaction Class", () => {
+      //This is a test that checks if the getDebit function of Transaction Class can be called
+      //Arrange
+      //Act
+      spyOn(testTransaction, "getDebit");
+      testTransaction.getDebit();
+      //Assert
+      expect(testTransaction.getDebit).toHaveBeenCalledWith();
+    });
+  });
 });
