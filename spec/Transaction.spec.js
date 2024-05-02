@@ -103,7 +103,7 @@ describe("Transaction Class Tests", () => {
     let testTransaction, testTransactionEmpty;
 
     beforeEach(() => {
-      testTransaction = new Transaction("10-01-2012", 1000, 0, 1000);
+      testTransaction = new Transaction("10-01-2012", 0, 1000, 1000);
       testTransactionEmpty = new Transaction();
     });
 
@@ -120,6 +120,15 @@ describe("Transaction Class Tests", () => {
       testTransaction.getDebit();
       //Assert
       expect(testTransaction.getDebit).toHaveBeenCalledWith();
+    });
+
+    it("Requirement 4 - Test 11) should call the getDate function of Transaction Class", () => {
+      //This is a test that checks if the getDebit function returns the set debit amount
+      //Arrange
+      const expected = 1000;
+      //Act
+      //Assert
+      expect(testTransaction.getDebit()).toBe(expected);
     });
   });
 });
