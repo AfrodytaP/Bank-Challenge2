@@ -8,6 +8,7 @@ describe("Transaction Class Tests", () => {
 
     beforeEach(() => {
       testTransaction = new Transaction("10-01-2012", 1000, 0, 1000);
+      testTransactionEmpty = new Transaction();
     });
 
     afterEach(() => {
@@ -48,7 +49,6 @@ describe("Transaction Class Tests", () => {
       //This is a test that checks if the date is not set the current date will be used
       //Arrange
       const expected = new Date().toLocaleDateString();
-      testTransactionEmpty = new Transaction();
       //Act
       //Assert
       expect(testTransactionEmpty.getDate()).toBe(expected);
@@ -61,6 +61,7 @@ describe("Transaction Class Tests", () => {
 
     beforeEach(() => {
       testTransaction = new Transaction("10-01-2012", 1000, 0, 1000);
+      testTransactionEmpty = new Transaction();
     });
 
     afterEach(() => {
@@ -85,6 +86,15 @@ describe("Transaction Class Tests", () => {
       //Act
       //Assert
       expect(testTransaction.getCredit()).toBe(expected);
+    });
+
+    it("Requirement 4 - Test 9) should call the getDate function of Transaction Class", () => {
+      //This is a test that checks if the getCredit function returns 0 if credit amount is not set
+      //Arrange
+      const expected = 0;
+      //Act
+      //Assert
+      expect(testTransactionEmpty.getCredit()).toBe(expected);
     });
   });
 });
