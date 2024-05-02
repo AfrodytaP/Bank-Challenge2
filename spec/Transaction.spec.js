@@ -2,9 +2,9 @@ import Transaction from "../src/Transaction.js";
 
 describe("Transaction Class Tests", () => {
   //This is a suite of tests for the Transaction class
-  describe("Requirement 4 Tests 3", () => {
+  describe("Testing the Date aspect", () => {
     // Will replace REPEATED arrange code
-    let testTransaction;
+    let testTransaction, testTransactionEmpty;
 
     beforeEach(() => {
       testTransaction = new Transaction("10-01-2012", 1000, 0, 1000);
@@ -12,6 +12,7 @@ describe("Transaction Class Tests", () => {
 
     afterEach(() => {
       testTransaction = undefined;
+      testTransactionEmpty = undefined;
     });
 
     //This is a suite of tests for requirements 4
@@ -32,14 +33,25 @@ describe("Transaction Class Tests", () => {
       //Assert
       expect(testTransaction.getDate).toHaveBeenCalledWith();
     });
+
     it("Requirement 4 - Test 5) should call the getDate function of Transaction Class", () => {
       //This is a test that checks if the getDate function returns the set date
 
       //Arrange
-      const expected = testTransaction.getDate();
+      const expected = "10-01-2012";
       //Act
       //Assert
-      expect(expected).toBe("10-01-2012");
+      expect(testTransaction.getDate()).toBe(expected);
+    });
+
+    it("Requirement 4 - Test 6) should call the getDate function of Transaction Class", () => {
+      //This is a test that checks if the date is not set the current date will be used
+      //Arrange
+      const expected = new Date().toLocaleDateString();
+      testTransactionEmpty = new Transaction();
+      //Act
+      //Assert
+      expect(testTransactionEmpty.getDate()).toBe(expected);
     });
   });
 });
