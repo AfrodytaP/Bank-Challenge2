@@ -162,5 +162,14 @@ describe("Transaction Class Tests", () => {
       //Assert
       expect(testTransaction.getBalance).toHaveBeenCalledWith();
     });
+
+    it("Requirement 4 - Test 14) should call the getBalance function of Transaction Class", () => {
+      //This is a test that checks if the getBalance function returns the set balance amount
+      //Arrange
+      const expected = 1000;
+      //Act
+      //Assert
+      expect(testTransaction.getBalance()).toBe(expected);
+    });
   });
 });
