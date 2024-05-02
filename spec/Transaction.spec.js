@@ -139,4 +139,28 @@ describe("Transaction Class Tests", () => {
       expect(testTransactionEmpty.getDebit()).toBe(expected);
     });
   });
+  describe("Testing the Balance aspect", () => {
+    // Will replace REPEATED arrange code
+    let testTransaction, testTransactionEmpty;
+
+    beforeEach(() => {
+      testTransaction = new Transaction("10-01-2012", 0, 1000, 1000);
+      testTransactionEmpty = new Transaction();
+    });
+
+    afterEach(() => {
+      testTransaction = undefined;
+      testTransactionEmpty = undefined;
+    });
+
+    it("Requirement 4 - Test 13) should call the getBalance function of Transaction Class", () => {
+      //This is a test that checks if the getBalance function of Transaction Class can be called
+      //Arrange
+      //Act
+      spyOn(testTransaction, "getBalance");
+      testTransaction.getBalance();
+      //Assert
+      expect(testTransaction.getBalance).toHaveBeenCalledWith();
+    });
+  });
 });
