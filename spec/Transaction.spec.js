@@ -130,5 +130,13 @@ describe("Transaction Class Tests", () => {
       //Assert
       expect(testTransaction.getDebit()).toBe(expected);
     });
+    it("Requirement 4 - Test 12) should call the getDate function of Transaction Class", () => {
+      //This is a test that checks if the getDEbit function returns 0 if debit amount is not set
+      //Arrange
+      const expected = 0;
+      //Act
+      //Assert
+      expect(testTransactionEmpty.getDebit()).toBe(expected);
+    });
   });
 });
