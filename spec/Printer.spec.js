@@ -309,7 +309,7 @@ describe("Printer Class Tests", () => {
 
       //Assert
       expect(spy).toHaveBeenCalledTimes(
-        testAccount.getAccountTransactions().length
+        testAccount.getAccountTransactions().length + 1 // +1 accounts for the extra console.log() for the header
       );
     });
 
