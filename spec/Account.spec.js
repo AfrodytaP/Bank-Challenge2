@@ -64,7 +64,7 @@ describe("Account Class Tests", () => {
       const expected = 1;
       //Act
 
-      testAccount.deposit(testTransaction.getCredit());
+      testAccount.deposit(testTransaction);
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
     });
@@ -75,7 +75,7 @@ describe("Account Class Tests", () => {
       const expected = 1000;
 
       //Act
-      testAccount.deposit(testTransaction.getCredit());
+      testAccount.deposit(testTransaction);
       //Assert
       expect(testAccount.getAccountBalance()).toBe(expected);
     });
@@ -90,7 +90,7 @@ describe("Account Class Tests", () => {
       //Act
       //Assert
       expect(() => {
-        testAccount.deposit(testTransaction.getCredit());
+        testAccount.deposit(testTransaction);
       }).toThrowError("Invalid credit input: Please enter a number");
     });
 
@@ -104,7 +104,7 @@ describe("Account Class Tests", () => {
       //Act
       //Assert
       expect(() => {
-        testAccount.deposit(testTransaction.getCredit());
+        testAccount.deposit(testTransaction);
       }).toThrowError("Invalid credit input: Please enter a positive number");
     });
   });
@@ -133,8 +133,8 @@ describe("Account Class Tests", () => {
       const expected = 2;
       //Act
 
-      testAccount.deposit(testTransaction.getCredit());
-      testAccount.withdraw(testTransaction.getDebit());
+      testAccount.deposit(testTransaction);
+      testAccount.withdraw(testTransaction);
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
     });
@@ -145,8 +145,8 @@ describe("Account Class Tests", () => {
       const expected = 90;
       //Act
 
-      testAccount.deposit(testTransaction.getCredit());
-      testAccount.withdraw(testTransaction.getDebit());
+      testAccount.deposit(testTransaction);
+      testAccount.withdraw(testTransaction);
       //Assert
       expect(testAccount.getAccountBalance()).toBe(expected);
     });
@@ -159,7 +159,7 @@ describe("Account Class Tests", () => {
       //Act
       //Assert
       expect(() => {
-        testAccount.withdraw(testTransaction.getDebit());
+        testAccount.withdraw(testTransaction);
       }).toThrowError("Invalid debit input: Please enter a number");
     });
 
@@ -173,7 +173,7 @@ describe("Account Class Tests", () => {
       //Act
       //Assert
       expect(() => {
-        testAccount.withdraw(testTransaction.getDebit());
+        testAccount.withdraw(testTransaction);
       }).toThrowError("Invalid debit input: Please enter a positive number");
     });
 
@@ -187,7 +187,7 @@ describe("Account Class Tests", () => {
       //Act
       //Assert
       expect(() => {
-        testAccount.withdraw(testTransaction.getDebit());
+        testAccount.withdraw(testTransaction);
       }).toThrowError("Insufficient funds: Transaction declined");
     });
   });
@@ -214,8 +214,8 @@ describe("Account Class Tests", () => {
         getCredit: 100,
         getDebit: 100,
       });
-      testAccount.deposit(testTransaction.getCredit());
-      testAccount.withdraw(testTransaction.getDebit());
+      testAccount.deposit(testTransaction);
+      testAccount.withdraw(testTransaction);
 
       //Assert
       expect(testAccount.getAccountBalance()).toBe(expected);
@@ -228,13 +228,13 @@ describe("Account Class Tests", () => {
         getCredit: 200,
         getDebit: 100,
       });
-      testAccount.deposit(testTransaction.getCredit());
-      testAccount.withdraw(testTransaction.getDebit());
-      testAccount.withdraw(testTransaction.getDebit());
+      testAccount.deposit(testTransaction);
+      testAccount.withdraw(testTransaction);
+      testAccount.withdraw(testTransaction);
 
       //Assert
       expect(() => {
-        testAccount.withdraw(testTransaction.getDebit());
+        testAccount.withdraw(testTransaction);
       }).toThrowError("Insufficient funds: Transaction declined");
       //Arrange
       const expected = 3;

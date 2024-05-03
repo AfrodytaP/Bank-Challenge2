@@ -18,58 +18,39 @@ export default class Account {
   }
 
   //getter method
-  getUserId() {
-    return this.#userID;
-  }
+  getUserId = () => this.#userID;
 
-  getUserName() {
-    return this.#userName;
-  }
+  getUserName = () => this.#userName;
 
-  getAccountTransactions() {
-    return this.#accountTransactions;
-  }
+  getAccountTransactions = () => this.#accountTransactions;
 
-  getAccountBalance() {
-    return this.#accountBalance;
-  }
+  getAccountBalance = () => this.#accountBalance;
 
   deposit = (accountTransaction) => {
-    this.#accountBalance += accountTransaction;
-    if (isNaN(accountTransaction)) {
+    const credit = accountTransaction.getCredit();
+    this.#accountBalance += credit;
+    if (isNaN(credit)) {
       throw Error("Invalid credit input: Please enter a number");
     }
-    if (accountTransaction < 0) {
+    if (credit < 0) {
       throw Error("Invalid credit input: Please enter a positive number");
     }
     return this.#accountTransactions.push(accountTransaction);
   };
 
   withdraw = (accountTransaction) => {
-    if (isNaN(accountTransaction)) {
+    const debit = accountTransaction.getDebit();
+    if (isNaN(debit)) {
       throw Error("Invalid debit input: Please enter a number");
     }
-    if (accountTransaction < 0) {
+    if (debit < 0) {
       throw Error("Invalid debit input: Please enter a positive number");
     }
-    if (this.#accountBalance < accountTransaction) {
+    if (this.#accountBalance < debit) {
       throw Error("Insufficient funds: Transaction declined");
     }
 
-    this.#accountBalance -= accountTransaction;
+    this.#accountBalance -= debit;
     return this.#accountTransactions.push(accountTransaction);
   };
-
-  calculateBalance() {
-    this.#accountBalance = this.#accountTransactions.reduce(
-      (balance, accountTransaction) => {
-        return (
-          balance +
-          accountTransaction.getCredit() -
-          accountTransaction.getDebit()
-        );
-      },
-      0
-    );
-  }
 }

@@ -245,7 +245,6 @@ describe("Printer Class Tests", () => {
   describe("Requirement 10 Tests - Statement Printer", () => {
     // Will replace REPEATED arrange code
     let testTransaction;
-
     beforeEach(() => {
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getDate: "10-01-2012",
@@ -253,30 +252,30 @@ describe("Printer Class Tests", () => {
         getDebit: null,
         getBalance: 1000,
       });
-    });
 
-    afterEach(() => {
-      testTransaction = undefined;
-    });
+      afterEach(() => {
+        testTransaction = undefined;
+      });
 
-    it("Requirement 10 - Test 1) should call the printStatement function of Printer Class", () => {
-      //This is a test that checks if the printStatement function of Printer Class can be called
-      //Arrange
-      //Act
-      spyOn(Printer, "printStatement");
-      Printer.printStatement();
-      //Assert
-      expect(Printer.printStatement).toHaveBeenCalledWith();
-    });
+      it("Requirement 10 - Test 1) should call the printStatement function of Printer Class", () => {
+        //This is a test that checks if the printStatement function of Printer Class can be called
+        //Arrange
+        //Act
+        spyOn(Printer, "printStatement");
+        Printer.printStatement();
+        //Assert
+        expect(Printer.printStatement).toHaveBeenCalledWith();
+      });
 
-    it("Requirement 10 - Test 2) should call the printStatement function of Printer Class", () => {
-      //This is a test that checks if the printStatement function console.log() been called
-      //Arrange
-      const spy = spyOn(console, "log");
-      //Act
-      Printer.printStatement(testTransaction);
-      //Assert
-      expect(spy).toHaveBeenCalled();
+      it("Requirement 10 - Test 2) should call the printStatement function of Printer Class", () => {
+        //This is a test that checks if the printStatement function console.log() been called
+        //Arrange
+        const spy = spyOn(console, "log");
+        //Act
+        Printer.printStatement(testTransaction);
+        //Assert
+        expect(spy).toHaveBeenCalled();
+      });
     });
   });
 });
