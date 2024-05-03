@@ -36,6 +36,9 @@ export default class Printer {
 
   //printStatement method
   static printStatement = (accountTransactions) => {
+    if (accountTransactions.length === 0) {
+      throw new Error("No transactions to print");
+    }
     accountTransactions.forEach((accountTransaction) => {
       const transactionFormatted = this.formatTransaction(accountTransaction);
       console.log(transactionFormatted);

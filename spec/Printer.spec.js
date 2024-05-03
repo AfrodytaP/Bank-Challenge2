@@ -327,5 +327,15 @@ describe("Printer Class Tests", () => {
         expect(spy).toHaveBeenCalledWith(expected);
       });
     });
+    it("Requirement 10 - Test 5) should call the printStatement function of Printer Class", () => {
+      //This is a test that checks if the printStatement function throws an error if no transactions are present in array
+      //Arrange
+      const accountTransactionsEmpty = [];
+      //Act
+      //Assert
+      expect(() => {
+        Printer.printStatement(accountTransactionsEmpty);
+      }).toThrowError("No transactions to print");
+    });
   });
 });
