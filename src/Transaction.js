@@ -17,18 +17,11 @@ export default class Transaction {
     this.#balance = balance;
   }
 
-  getDate() {
-    return this.#date;
-  }
+  getDate = () => this.#date;
 
-  getCredit() {
-    return this.#credit;
-  }
-  getDebit() {
-    return this.#debit;
-  }
+  getCredit = () => this.#credit;
 
-  getBalance() {
-    return this.#balance;
-  }
+  getDebit = () => this.#debit;
+
+  getBalance = () => this.#balance;
 }

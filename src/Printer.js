@@ -35,8 +35,10 @@ export default class Printer {
   };
 
   //printStatement method
-  static printStatement = (accountTransaction) => {
-    const transactionFormatted = this.formatTransaction(accountTransaction);
-    console.log(transactionFormatted);
+  static printStatement = (accountTransactions) => {
+    accountTransactions.forEach((accountTransaction) => {
+      const transactionFormatted = this.formatTransaction(accountTransaction);
+      console.log(transactionFormatted);
+    });
   };
 }
