@@ -16,12 +16,13 @@ export default class Transaction {
     this.#debit = debit;
     this.#balance = balance;
   }
-
+  //getter method
+  //getDate method
   getDate = () => this.#date;
-
+  //getCredit method
   getCredit = () => this.#credit;
-
+  //getDebit method
   getDebit = () => this.#debit;
-
+  //getBalance method
   getBalance = () => this.#balance;
 }

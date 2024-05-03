@@ -39,7 +39,8 @@ export default class Printer {
     if (accountTransactions.length === 0) {
       throw new Error("No transactions to print");
     }
-    accountTransactions.forEach((accountTransaction) => {
+    console.log(`date       || credit  || debit  || balance`);
+    accountTransactions.reverse().forEach((accountTransaction) => {
       const transactionFormatted = this.formatTransaction(accountTransaction);
       console.log(transactionFormatted);
     });

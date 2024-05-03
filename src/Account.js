@@ -18,26 +18,27 @@ export default class Account {
   }
 
   //getter method
+  //getUserId method
   getUserId = () => this.#userID;
-
+  //getUserName method
   getUserName = () => this.#userName;
-
+  //getAccountTransactions method
   getAccountTransactions = () => this.#accountTransactions;
-
+  //getAccountBalance method
   getAccountBalance = () => this.#accountBalance;
-
+  //deposit method
   deposit = (accountTransaction) => {
     const credit = accountTransaction.getCredit();
-    this.#accountBalance += credit;
     if (isNaN(credit)) {
       throw Error("Invalid credit input: Please enter a number");
     }
     if (credit < 0) {
       throw Error("Invalid credit input: Please enter a positive number");
     }
+    this.#accountBalance += credit;
     return this.#accountTransactions.push(accountTransaction);
   };
-
+  //withdraw method
   withdraw = (accountTransaction) => {
     const debit = accountTransaction.getDebit();
     if (isNaN(debit)) {
@@ -49,7 +50,6 @@ export default class Account {
     if (this.#accountBalance < debit) {
       throw Error("Insufficient funds: Transaction declined");
     }
-
     this.#accountBalance -= debit;
     return this.#accountTransactions.push(accountTransaction);
   };
