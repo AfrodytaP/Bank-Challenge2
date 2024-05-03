@@ -312,5 +312,20 @@ describe("Printer Class Tests", () => {
         testAccount.getAccountTransactions().length
       );
     });
+
+    it("Requirement 10 - Test 4) should call the printStatement function of Printer Class", () => {
+      //This is a test that checks if the printStatement function console.log() been called the correct number of times with the correct arguments
+      //Arrange
+      const spy = spyOn(console, "log");
+      //Act
+      let accountTransactions = testAccount.getAccountTransactions();
+      Printer.printStatement(accountTransactions);
+
+      //Assert
+      accountTransactions.forEach((accountTransaction) => {
+        const expected = Printer.formatTransaction(accountTransaction);
+        expect(spy).toHaveBeenCalledWith(expected);
+      });
+    });
   });
 });
