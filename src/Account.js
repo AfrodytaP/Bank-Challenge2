@@ -36,6 +36,10 @@ export default class Account {
       throw Error("Invalid credit input: Please enter a positive number");
     }
     this.#accountBalance += credit;
+
+    // const balance = this.#accountBalance;
+    accountTransaction.currentBalance = this.#accountBalance;
+
     return this.#accountTransactions.push(accountTransaction);
   };
   //withdraw method
@@ -51,6 +55,10 @@ export default class Account {
       throw Error("Insufficient funds: Transaction declined");
     }
     this.#accountBalance -= debit;
+    // const balance = this.#accountBalance;
+
+    accountTransaction.currentBalance = this.#accountBalance;
+    // accountTransaction.newB = balance;
     return this.#accountTransactions.push(accountTransaction);
   };
 }

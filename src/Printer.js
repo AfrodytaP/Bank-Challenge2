@@ -21,7 +21,7 @@ export default class Printer {
 
   //formatBalance method
   static formatBalance = (accountTransaction) => {
-    const balance = accountTransaction.getBalance();
+    const balance = accountTransaction.currentBalance;
     return balance !== null ? balance.toFixed(2) : "";
   };
 

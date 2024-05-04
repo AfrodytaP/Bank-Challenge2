@@ -163,14 +163,15 @@ describe("Printer Class Tests", () => {
         getDate: "10-01-2012",
         getCredit: 100,
         getDebit: 1000,
-        getBalance: 200,
       });
+      testTransaction.currentBalance = 200;
+
       testTransactionEmpty = jasmine.createSpyObj("testTransaction", {
         getDate: "10-01-2012",
         getCredit: null,
         getDebit: null,
-        getBalance: null,
       });
+      testTransactionEmpty.currentBalance = null;
     });
 
     afterEach(() => {
@@ -214,8 +215,8 @@ describe("Printer Class Tests", () => {
         getDate: "10-01-2012",
         getCredit: 1000,
         getDebit: null,
-        getBalance: 1000,
       });
+      testTransaction.currentBalance = 1000;
     });
 
     afterEach(() => {
@@ -251,21 +252,20 @@ describe("Printer Class Tests", () => {
         getDate: "10-01-2012",
         getCredit: 1000,
         getDebit: null,
-        getBalance: 1000,
       });
+      testTransaction.currentBalance = 1000;
+
       testTransaction2 = jasmine.createSpyObj("testTransaction", {
         getDate: "14-01-2012",
         getCredit: null,
         getDebit: 500,
-        getBalance: 2500,
       });
+      testTransaction2.currentBalance = 2500;
       testAccount = jasmine.createSpyObj("testAccount", {
         getUserID: 1,
         getUserName: "Afrodyta",
         getAccountTransactions: [],
         getAccountBalance: 0,
-        withdraw: 0,
-        debit: 0,
       });
       testAccount.getAccountTransactions().push(testTransaction);
       testAccount.getAccountTransactions().push(testTransaction2);

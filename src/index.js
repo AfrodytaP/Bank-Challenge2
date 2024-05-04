@@ -20,9 +20,9 @@ try {
 }
 
 // transaction instances
-const transaction1 = new Transaction("10-01-2012", 1000, null, 1000);
-const transaction2 = new Transaction("13-01-2012", 2000, null, 3000);
-const transaction3 = new Transaction("14-01-2012", null, 500, 2500);
+const transaction1 = new Transaction("10-01-2012", 1000, null); //here
+const transaction2 = new Transaction("13-01-2012", 2000, null); //here
+const transaction3 = new Transaction("14-01-2012", null, 500); //here
 
 // deposit and withdraw transactions
 account.deposit(transaction1);
@@ -33,7 +33,7 @@ account.withdraw(transaction3);
 console.log("User entered invalid credit input - ten.");
 // try catch block to handles the error
 try {
-  const transaction4 = new Transaction("15-01-2012", "ten", null, 3500);
+  const transaction4 = new Transaction("15-01-2012", "ten", null); //here
   account.deposit(transaction4);
 } catch (error) {
   console.log(error.message + `\n`);
@@ -44,7 +44,7 @@ console.log("User wanted to withdraw more funds than was available.");
 
 // try catch block to handles the error
 try {
-  const transaction5 = new Transaction("15-01-2012", null, 30000, -500);
+  const transaction5 = new Transaction("15-01-2012", null, 30000); //here
   account.withdraw(transaction5);
 } catch (error) {
   console.log(error.message + `\n`);
