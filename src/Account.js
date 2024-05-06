@@ -69,7 +69,10 @@ export default class Account {
 
   changeOverdraft = (newOverdraft) => {
     if (isNaN(newOverdraft)) {
-      throw Error("Invalid credit input: Please enter a number");
+      throw Error("Invalid overdraft input: Please enter a number");
+    }
+    if (newOverdraft < 0) {
+      throw Error("Invalid overdraft input: Please enter a positive number");
     }
     this.#overdraft = newOverdraft;
   };

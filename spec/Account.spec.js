@@ -287,15 +287,26 @@ describe("Account Class Tests", () => {
       expect(testAccount.getOverdraft()).toBe(expected);
     });
     it("Requirement 13 - Test 2) should throw a NAN error", () => {
-      //This is a test checks a string is not accepted as a changeOverdraft
+      //This is a test checks a string is not accepted as a changeOverdraft argument
       //Arrange
-      const expected = "Invalid credit input: Please enter a number";
+      const expected = "Invalid overdraft input: Please enter a number";
 
       //Act
       //Assert
       expect(() => {
         testAccount.changeOverdraft("one");
-      }).toThrowError("Invalid credit input: Please enter a number");
+      }).toThrowError(expected);
+    });
+    it("Requirement 13 - Test 3) should throw a no negative numbers error", () => {
+      //This is a test checks a negative number is not accepted as a changeOverdraft argument
+      //Arrange
+      const expected =
+        "Invalid overdraft input: Please enter a positive number";
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.changeOverdraft(-1000);
+      }).toThrowError(expected);
     });
   });
 });
