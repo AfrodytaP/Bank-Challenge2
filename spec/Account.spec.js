@@ -322,7 +322,7 @@ describe("Account Class Tests", () => {
 
   describe("Requirement 14 Tests - Account testing overdraft functionality with withdrawals", () => {
     // Will replace REPEATED arrange code
-    let testAccount, testTransaction;
+    let testAccount, testTransaction, testTransaction2;
 
     beforeEach(() => {
       testAccount = new Account(1, "Afrodyta", [], 1000, 100);
@@ -330,11 +330,15 @@ describe("Account Class Tests", () => {
       testTransaction = jasmine.createSpyObj("testTransaction", {
         getDebit: 1050,
       });
+      testTransaction2 = jasmine.createSpyObj("testTransaction", {
+        getDebit: 100,
+      });
     });
 
     afterEach(() => {
       testAccount = undefined;
       testTransaction = undefined;
+      testTransaction2 = undefined;
     });
 
     it("Requirement 14 - Test 1) should call the withdraw function of Account Class", () => {
@@ -344,6 +348,16 @@ describe("Account Class Tests", () => {
       //Act
 
       testAccount.withdraw(testTransaction);
+      //Assert
+      expect(testAccount.getAccountTransactions().length).toBe(expected);
+    });
+    it("Requirement 14 - Test 2) should call the withdraw function of Account Class", () => {
+      //This is a test checks that accountTransactions array is of length 1 as the overdraft is set to 100
+      //Arrange
+      const expected = 1;
+      //Act
+
+      testAccount.withdraw(testTransaction2);
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
     });
