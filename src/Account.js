@@ -11,7 +11,7 @@ export default class Account {
     userName,
     accountTransaction = [],
     accountBalance = 0,
-    overdraft = "not available"
+    overdraft = 0
   ) {
     this.#userID = userID;
     this.#userName = userName;
@@ -68,6 +68,9 @@ export default class Account {
   };
 
   changeOverdraft = (newOverdraft) => {
+    if (isNaN(newOverdraft)) {
+      throw Error("Invalid credit input: Please enter a number");
+    }
     this.#overdraft = newOverdraft;
   };
 }

@@ -249,7 +249,7 @@ describe("Account Class Tests", () => {
     let testAccount;
 
     beforeEach(() => {
-      testAccount = new Account(1, "Afrodyta", [], 1000, "not available");
+      testAccount = new Account(1, "Afrodyta", [], 1000, 0);
     });
 
     afterEach(() => {
@@ -257,9 +257,9 @@ describe("Account Class Tests", () => {
     });
 
     it("Requirement 12 - Test 1) should call the getOverdraft function of Account Class", () => {
-      //This is a test that checks if the getOverdraft function of Account Class returns if overdraft is not available
+      //This is a test that checks if the getOverdraft function of Account Class returns if overdraft is set to 0
       //Arrange
-      const expected = "not available";
+      const expected = 0;
       //Act
       //Assert
       expect(testAccount.getOverdraft()).toBe(expected);
@@ -270,7 +270,7 @@ describe("Account Class Tests", () => {
     let testAccount;
 
     beforeEach(() => {
-      testAccount = new Account(1, "Afrodyta", [], 1000, "available");
+      testAccount = new Account(1, "Afrodyta", [], 1000, 0);
     });
 
     afterEach(() => {
@@ -285,6 +285,17 @@ describe("Account Class Tests", () => {
       testAccount.changeOverdraft(1000);
       //Assert
       expect(testAccount.getOverdraft()).toBe(expected);
+    });
+    it("Requirement 13 - Test 2) should throw a NAN error", () => {
+      //This is a test checks a string is not accepted as a changeOverdraft
+      //Arrange
+      const expected = "Invalid credit input: Please enter a number";
+
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.changeOverdraft("one");
+      }).toThrowError("Invalid credit input: Please enter a number");
     });
   });
 });
