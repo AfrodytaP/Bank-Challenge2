@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import Printer from "../src/Printer.js";
 
 describe("Printer Class Tests", () => {
@@ -89,8 +88,11 @@ describe("Printer Class Tests", () => {
       //Arrange
       const expected = "100.00";
       //Act
+      const output = Printer.formatCredit(testTransaction);
+      //Remove ANSI escape codes from output
+      const outputNoColour = output.replace(/\x1b\[[0-9;]*m/g, "");
       //Assert
-      expect(Printer.formatCredit(testTransaction)).toEqual(expected);
+      expect(outputNoColour).toEqual(expected);
     });
 
     it("Requirement 6 - Test 3) should call the formatCredit function of Printer Class", () => {
@@ -242,8 +244,11 @@ describe("Printer Class Tests", () => {
       //Arrange
       const expected = "10/01/2012 || 1000.00 ||        || 1000.00";
       //Act
+      const output = Printer.formatTransaction(testTransaction);
+      //Remove ANSI escape codes from output
+      const outputNoColour = output.replace(/\x1b\[[0-9;]*m/g, "");
       //Assert
-      expect(Printer.formatTransaction(testTransaction)).toEqual(expected);
+      expect(outputNoColour).toEqual(expected);
     });
   });
 
@@ -343,7 +348,7 @@ describe("Printer Class Tests", () => {
     });
     describe("Requirement 11 Tests - Statement Printer colour output", () => {
       // Will replace REPEATED arrange code
-      let testTransaction, testAccount;
+      let testTransaction;
 
       beforeEach(() => {
         testTransaction = jasmine.createSpyObj("testTransaction", {
@@ -352,19 +357,10 @@ describe("Printer Class Tests", () => {
           getDebit: 1000,
         });
         testTransaction.currentBalance = 1000;
-
-        testAccount = jasmine.createSpyObj("testAccount", {
-          getUserID: 1,
-          getUserName: "Afrodyta",
-          getAccountTransactions: [],
-          getAccountBalance: 0,
-        });
-        testAccount.getAccountTransactions().push(testTransaction);
       });
 
       afterEach(() => {
         testTransaction = undefined;
-        testAccount = undefined;
       });
 
       it("Requirement 11 - Test 1) should call the formatDebit function of Printer Class", () => {
@@ -373,6 +369,16 @@ describe("Printer Class Tests", () => {
         const expected = "\x1b[31m";
         // Act
         const output = Printer.formatDebit(testTransaction);
+        // Assert
+        // Check if the output includes the ANSI escape code for red color
+        expect(output).toContain(expected);
+      });
+      it("Requirement 11 - Test 2) should call the formatCredit function of Printer Class", () => {
+        //This is a test that checks if the formatCredit function of Printer Class returns the credit in green color
+        // Arrange
+        const expected = "\x1b[32m";
+        // Act
+        const output = Printer.formatCredit(testTransaction);
         // Assert
         // Check if the output includes the ANSI escape code for red color
         expect(output).toContain(expected);
