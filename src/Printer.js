@@ -23,7 +23,11 @@ export default class Printer {
   //formatBalance method
   static formatBalance = (accountTransaction) => {
     const balance = accountTransaction.currentBalance;
-    return balance !== null ? balance.toFixed(2) : "";
+    // balanceFormated initilieze to let as it will be reassigned
+    let balanceFormated = balance.toFixed(2);
+    //if balance is negative, format it in red, else format it in green
+    return (balanceFormated =
+      balance > 0 ? chalk.green(balanceFormated) : chalk.red(balanceFormated));
   };
 
   //formatTransaction method

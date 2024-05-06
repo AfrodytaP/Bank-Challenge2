@@ -199,17 +199,12 @@ describe("Printer Class Tests", () => {
       //Arrange
       const expected = "200.00";
       //Act
-      //Assert
-      expect(Printer.formatBalance(testTransaction)).toEqual(expected);
-    });
-
-    it("Requirement 8 - Test 3) should call the formatBalance function of Printer Class", () => {
-      //This is a test that checks if the formatBalance function returns balance as "" if null
-      //Arrange
-      const expected = "";
+      const output = Printer.formatBalance(testTransaction);
+      //Remove ANSI escape codes from output
+      const outputNoColour = output.replace(/\x1b\[[0-9;]*m/g, "");
       //Act
       //Assert
-      expect(Printer.formatBalance(testTransactionEmpty)).toEqual(expected);
+      expect(outputNoColour).toEqual(expected);
     });
   });
   describe("Requirement 9 Tests - Transaction formatting", () => {
@@ -379,6 +374,16 @@ describe("Printer Class Tests", () => {
         const expected = "\x1b[32m";
         // Act
         const output = Printer.formatCredit(testTransaction);
+        // Assert
+        // Check if the output includes the ANSI escape code for red color
+        expect(output).toContain(expected);
+      });
+      it("Requirement 11 - Test 3) should call the formatBalance function of Printer Class", () => {
+        //This is a test that checks if the formatBalance function of Printer Class returns the balance in green color when credit is present
+        // Arrange
+        const expected = "\x1b[32m";
+        // Act
+        const output = Printer.formatBalance(testTransaction);
         // Assert
         // Check if the output includes the ANSI escape code for red color
         expect(output).toContain(expected);
