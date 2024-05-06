@@ -66,4 +66,8 @@ export default class Account {
     // accountTransaction.newB = balance;
     return this.#accountTransactions.push(accountTransaction);
   };
+
+  changeOverdraft = (newOverdraft) => {
+    this.#overdraft = newOverdraft;
+  };
 }

@@ -249,7 +249,7 @@ describe("Account Class Tests", () => {
     let testAccount;
 
     beforeEach(() => {
-      testAccount = new Account(1, "Afrodyta", [], 1000, "available");
+      testAccount = new Account(1, "Afrodyta", [], 1000, "not available");
     });
 
     afterEach(() => {
@@ -257,10 +257,32 @@ describe("Account Class Tests", () => {
     });
 
     it("Requirement 12 - Test 1) should call the getOverdraft function of Account Class", () => {
-      //This is a test that checks if the getOverdraft function of Account Class returns if overdraft is available
+      //This is a test that checks if the getOverdraft function of Account Class returns if overdraft is not available
       //Arrange
-      const expected = "available";
+      const expected = "not available";
       //Act
+      //Assert
+      expect(testAccount.getOverdraft()).toBe(expected);
+    });
+  });
+  describe("Requirement 13 Tests - Account testing overdraft functionality", () => {
+    // Will replace REPEATED arrange code
+    let testAccount;
+
+    beforeEach(() => {
+      testAccount = new Account(1, "Afrodyta", [], 1000, "available");
+    });
+
+    afterEach(() => {
+      testAccount = undefined;
+    });
+
+    it("Requirement 13 - Test 1) should call the changeOverdraft function of Account Class", () => {
+      //This is a test that checks if the changeOverdraft function of Account Class returns to change the overdraft status
+      //Arrange
+      const expected = 1000;
+      //Act
+      testAccount.changeOverdraft(1000);
       //Assert
       expect(testAccount.getOverdraft()).toBe(expected);
     });
