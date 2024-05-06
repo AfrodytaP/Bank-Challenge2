@@ -322,7 +322,7 @@ describe("Account Class Tests", () => {
 
   describe("Requirement 14 Tests - Account testing overdraft functionality with withdrawals", () => {
     // Will replace REPEATED arrange code
-    let testAccount, testTransaction, testTransaction2;
+    let testAccount, testTransaction, testTransaction2, testTransaction3;
 
     beforeEach(() => {
       testAccount = new Account(1, "Afrodyta", [], 1000, 100);
@@ -331,7 +331,10 @@ describe("Account Class Tests", () => {
         getDebit: 1050,
       });
       testTransaction2 = jasmine.createSpyObj("testTransaction", {
-        getDebit: 100,
+        getDebit: 1100,
+      });
+      testTransaction3 = jasmine.createSpyObj("testTransaction", {
+        getDebit: 1101,
       });
     });
 
@@ -339,6 +342,7 @@ describe("Account Class Tests", () => {
       testAccount = undefined;
       testTransaction = undefined;
       testTransaction2 = undefined;
+      testTransaction3 = undefined;
     });
 
     it("Requirement 14 - Test 1) should call the withdraw function of Account Class", () => {
@@ -360,6 +364,16 @@ describe("Account Class Tests", () => {
       testAccount.withdraw(testTransaction2);
       //Assert
       expect(testAccount.getAccountTransactions().length).toBe(expected);
+    });
+    it("Requirement 14 - Test 3) should call the withdraw function of Account Class", () => {
+      //This is a test checks that error is thrown as the withdraw amount is greater than the balance and overdraft together
+      //Arrange
+      const expected = "Insufficient funds: Transaction declined";
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.withdraw(testTransaction3);
+      }).toThrowError(expected);
     });
   });
 });
