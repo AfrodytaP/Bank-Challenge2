@@ -3,18 +3,21 @@ export default class Account {
   #userName;
   #accountTransactions = [];
   #accountBalance;
+  #overdraft;
 
   //constructor
   constructor(
     userID = 0,
     userName,
     accountTransaction = [],
-    accountBalance = 0
+    accountBalance = 0,
+    overdraft = "not available"
   ) {
     this.#userID = userID;
     this.#userName = userName;
     this.#accountTransactions = accountTransaction;
     this.#accountBalance = accountBalance;
+    this.#overdraft = overdraft;
   }
 
   //getter method
@@ -26,6 +29,8 @@ export default class Account {
   getAccountTransactions = () => this.#accountTransactions;
   //getAccountBalance method
   getAccountBalance = () => this.#accountBalance;
+  //getOverdraft method
+  getOverdraft = () => this.#overdraft;
   //deposit method
   deposit = (accountTransaction) => {
     const credit = accountTransaction.getCredit();

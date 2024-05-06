@@ -341,70 +341,71 @@ describe("Printer Class Tests", () => {
         Printer.printStatement(accountTransactionsEmpty);
       }).toThrowError("No transactions to print");
     });
-    describe("Requirement 11 Tests - Statement Printer colour output", () => {
-      // Will replace REPEATED arrange code
-      let testTransaction, testTransaction2;
+  });
 
-      beforeEach(() => {
-        testTransaction = jasmine.createSpyObj("testTransaction", {
-          getDate: "10-01-2012",
-          getCredit: 1000,
-          getDebit: 1000,
-        });
-        testTransaction.currentBalance = 1000;
-        testTransaction2 = jasmine.createSpyObj("testTransaction", {
-          getDate: "10-01-2012",
-          getCredit: 1000,
-          getDebit: 1000,
-        });
-        testTransaction2.currentBalance = -1000;
-      });
+  describe("Requirement 11 Tests - Statement Printer colour output", () => {
+    // Will replace REPEATED arrange code
+    let testTransaction, testTransaction2;
 
-      afterEach(() => {
-        testTransaction = undefined;
-        testTransaction2 = undefined;
+    beforeEach(() => {
+      testTransaction = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: 1000,
+        getDebit: 1000,
       });
+      testTransaction.currentBalance = 1000;
+      testTransaction2 = jasmine.createSpyObj("testTransaction", {
+        getDate: "10-01-2012",
+        getCredit: 1000,
+        getDebit: 1000,
+      });
+      testTransaction2.currentBalance = -1000;
+    });
 
-      it("Requirement 11 - Test 1) should call the formatDebit function of Printer Class", () => {
-        //This is a test that checks if the formatDebit function of Printer Class returns the debit in red color
-        // Arrange
-        const expected = "\x1b[31m";
-        // Act
-        const output = Printer.formatDebit(testTransaction);
-        // Assert
-        // Check if the output includes the ANSI escape code for red color
-        expect(output).toContain(expected);
-      });
-      it("Requirement 11 - Test 2) should call the formatCredit function of Printer Class", () => {
-        //This is a test that checks if the formatCredit function of Printer Class returns the credit in green color
-        // Arrange
-        const expected = "\x1b[32m";
-        // Act
-        const output = Printer.formatCredit(testTransaction);
-        // Assert
-        // Check if the output includes the ANSI escape code for red color
-        expect(output).toContain(expected);
-      });
-      it("Requirement 11 - Test 3) should call the formatBalance function of Printer Class", () => {
-        //This is a test that checks if the formatBalance function of Printer Class returns the balance in green color when credit is positive
-        // Arrange
-        const expected = "\x1b[32m";
-        // Act
-        const output = Printer.formatBalance(testTransaction);
-        // Assert
-        // Check if the output includes the ANSI escape code for red color
-        expect(output).toContain(expected);
-      });
-      it("Requirement 11 - Test 4) should call the formatBalance function of Printer Class", () => {
-        //This is a test that checks if the formatBalance function of Printer Class returns the balance in red color when credit is negative
-        // Arrange
-        const expected = "\x1b[31m";
-        // Act
-        const output = Printer.formatBalance(testTransaction2);
-        // Assert
-        // Check if the output includes the ANSI escape code for red color
-        expect(output).toContain(expected);
-      });
+    afterEach(() => {
+      testTransaction = undefined;
+      testTransaction2 = undefined;
+    });
+
+    it("Requirement 11 - Test 1) should call the formatDebit function of Printer Class", () => {
+      //This is a test that checks if the formatDebit function of Printer Class returns the debit in red color
+      // Arrange
+      const expected = "\x1b[31m";
+      // Act
+      const output = Printer.formatDebit(testTransaction);
+      // Assert
+      // Check if the output includes the ANSI escape code for red color
+      expect(output).toContain(expected);
+    });
+    it("Requirement 11 - Test 2) should call the formatCredit function of Printer Class", () => {
+      //This is a test that checks if the formatCredit function of Printer Class returns the credit in green color
+      // Arrange
+      const expected = "\x1b[32m";
+      // Act
+      const output = Printer.formatCredit(testTransaction);
+      // Assert
+      // Check if the output includes the ANSI escape code for red color
+      expect(output).toContain(expected);
+    });
+    it("Requirement 11 - Test 3) should call the formatBalance function of Printer Class", () => {
+      //This is a test that checks if the formatBalance function of Printer Class returns the balance in green color when credit is positive
+      // Arrange
+      const expected = "\x1b[32m";
+      // Act
+      const output = Printer.formatBalance(testTransaction);
+      // Assert
+      // Check if the output includes the ANSI escape code for red color
+      expect(output).toContain(expected);
+    });
+    it("Requirement 11 - Test 4) should call the formatBalance function of Printer Class", () => {
+      //This is a test that checks if the formatBalance function of Printer Class returns the balance in red color when credit is negative
+      // Arrange
+      const expected = "\x1b[31m";
+      // Act
+      const output = Printer.formatBalance(testTransaction2);
+      // Assert
+      // Check if the output includes the ANSI escape code for red color
+      expect(output).toContain(expected);
     });
   });
 });

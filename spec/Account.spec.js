@@ -243,4 +243,26 @@ describe("Account Class Tests", () => {
       expect(testAccount.getAccountTransactions().length).toBe(expected);
     });
   });
+
+  describe("Requirement 12 Tests - Account testing overdraft functionality", () => {
+    // Will replace REPEATED arrange code
+    let testAccount;
+
+    beforeEach(() => {
+      testAccount = new Account(1, "Afrodyta", [], 1000, "available");
+    });
+
+    afterEach(() => {
+      testAccount = undefined;
+    });
+
+    it("Requirement 12 - Test 1) should call the getOverdraft function of Account Class", () => {
+      //This is a test that checks if the getOverdraft function of Account Class returns if overdraft is available
+      //Arrange
+      const expected = "available";
+      //Act
+      //Assert
+      expect(testAccount.getOverdraft()).toBe(expected);
+    });
+  });
 });
