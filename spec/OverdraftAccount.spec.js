@@ -25,9 +25,16 @@ describe("OverdraftAccount Class Tests", () => {
       //This is a test that checks if an instance of AccountOverdraft Class can be made
       //Arrange
       //Act
-      const testOverdraftAccount = new OverdraftAccount();
       //Assert
       expect(testOverdraftAccount).toBeInstanceOf(OverdraftAccount);
+    });
+    it("Requirement 13 - Test 2) should call the getOverdraftAccount function of OverdraftAccount Class", () => {
+      //This is a test that checks if the getOverdraftAccount function of OverdraftAccount Class can be called
+      //Arrange
+      const expected = 3000;
+      //Act
+      //Assert
+      expect(testOverdraftAccount.getOverdraftAccount()).toBe(expected);
     });
   });
 });

@@ -15,4 +15,7 @@ export default class OverdraftAccountAccount extends Account {
     super(userID, userName, accountTransaction, accountBalance, overdraft);
     this.#availableOverdraft = availableOverdraft;
   }
+
+  //getOverdraftAccount method
+  getOverdraftAccount = () => this.#availableOverdraft;
 }
