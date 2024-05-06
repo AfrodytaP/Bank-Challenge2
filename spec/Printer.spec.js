@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import Printer from "../src/Printer.js";
 
 describe("Printer Class Tests", () => {
@@ -140,8 +141,11 @@ describe("Printer Class Tests", () => {
       //Arrange
       const expected = "1000.00";
       //Act
+      const output = Printer.formatDebit(testTransaction);
+      //Remove ANSI escape codes from output
+      const outputNoColour = output.replace(/\x1b\[[0-9;]*m/g, "");
       //Assert
-      expect(Printer.formatDebit(testTransaction)).toEqual(expected);
+      expect(outputNoColour).toEqual(expected);
     });
 
     it("Requirement 7 - Test 3) should call the formatDebit function of Printer Class", () => {
@@ -304,7 +308,7 @@ describe("Printer Class Tests", () => {
       //Arrange
       const spy = spyOn(console, "log");
       //Act
-      let accountTransactions = testAccount.getAccountTransactions();
+      const accountTransactions = testAccount.getAccountTransactions();
       Printer.printStatement(accountTransactions);
 
       //Assert
@@ -318,7 +322,7 @@ describe("Printer Class Tests", () => {
       //Arrange
       const spy = spyOn(console, "log");
       //Act
-      let accountTransactions = testAccount.getAccountTransactions();
+      const accountTransactions = testAccount.getAccountTransactions();
       Printer.printStatement(accountTransactions);
 
       //Assert
@@ -336,6 +340,43 @@ describe("Printer Class Tests", () => {
       expect(() => {
         Printer.printStatement(accountTransactionsEmpty);
       }).toThrowError("No transactions to print");
+    });
+    describe("Requirement 11 Tests - Statement Printer colour output", () => {
+      // Will replace REPEATED arrange code
+      let testTransaction, testAccount;
+
+      beforeEach(() => {
+        testTransaction = jasmine.createSpyObj("testTransaction", {
+          getDate: "10-01-2012",
+          getCredit: 1000,
+          getDebit: 1000,
+        });
+        testTransaction.currentBalance = 1000;
+
+        testAccount = jasmine.createSpyObj("testAccount", {
+          getUserID: 1,
+          getUserName: "Afrodyta",
+          getAccountTransactions: [],
+          getAccountBalance: 0,
+        });
+        testAccount.getAccountTransactions().push(testTransaction);
+      });
+
+      afterEach(() => {
+        testTransaction = undefined;
+        testAccount = undefined;
+      });
+
+      it("Requirement 11 - Test 1) should call the formatDebit function of Printer Class", () => {
+        //This is a test that checks if the formatDebit function of Printer Class returns the debit in red color
+        // Arrange
+        const expected = "\x1b[31m";
+        // Act
+        const output = Printer.formatDebit(testTransaction);
+        // Assert
+        // Check if the output includes the ANSI escape code for red color
+        expect(output).toContain(expected);
+      });
     });
   });
 });

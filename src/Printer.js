@@ -1,3 +1,4 @@
+import chalk from "chalk";
 export default class Printer {
   //constructor
   constructor() {}
@@ -16,7 +17,7 @@ export default class Printer {
   //formatDebit method
   static formatDebit = (accountTransaction) => {
     const debit = accountTransaction.getDebit();
-    return debit !== null ? debit.toFixed(2) : "";
+    return debit !== null ? chalk.red(debit.toFixed(2)) : "";
   };
 
   //formatBalance method
