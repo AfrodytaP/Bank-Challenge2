@@ -68,6 +68,9 @@ export default class Account {
   };
 
   changeOverdraft = (newOverdraft) => {
+    if (newOverdraft === null) {
+      throw Error("Invalid overdraft input: Please don't leave empty");
+    }
     if (isNaN(newOverdraft)) {
       throw Error("Invalid overdraft input: Please enter a number");
     }

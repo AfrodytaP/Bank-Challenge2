@@ -308,5 +308,15 @@ describe("Account Class Tests", () => {
         testAccount.changeOverdraft(-1000);
       }).toThrowError(expected);
     });
+    it("Requirement 13 - Test 4) should throw a null error", () => {
+      //This is a test checks null is not accepted as a changeOverdraft argument
+      //Arrange
+      const expected = "Invalid overdraft input: Please don't leave empty";
+      //Act
+      //Assert
+      expect(() => {
+        testAccount.changeOverdraft(null);
+      }).toThrowError(expected);
+    });
   });
 });
