@@ -23,7 +23,7 @@ const accountTransactions = account.getAccountTransactions();
 // print statement
 Printer.printStatement(accountTransactions);
 //--------------------------------------------------------------
-console.log("\n\n\n");
+console.log("\n\n");
 
 // account instance
 const account2 = new Account(2, "Afrodyta Pudlo", [], 0, 200);
@@ -56,7 +56,7 @@ try {
 const accountTransactions2 = account2.getAccountTransactions();
 // print statement
 Printer.printStatement(accountTransactions2);
-console.log("\n\n\n");
+console.log("\n\n");
 //--------------------------------------------------------------
 // invalid credit input
 console.log("User Tried to print statement but no transaction were made.");
